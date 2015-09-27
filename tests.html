@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<h1>Test QueryString.js</h1>
+
+<div id="trace"></div>
+
+<script src="QueryString.js"></script>
+<script>
+function test(a, b) {
+	if (a === b) {
+		return 'PASS';
+	} else {
+		trace(a.toString() + ' vs. ' + b.toString());
+		return 'FAIL';
+	}
+}
+
+function trace(str) {
+	var p = document.createElement('p');
+
+	p.innerHTML = str;
+
+	document.getElementById('trace').appendChild(p);
+}
+
+// #1
+trace('#1 ' + test(
+	QueryString.removeParameter('http://example.com/packaging/55dd787f8dcee5f831625522?&quizmonkey=5', 'quizmonkey'),
+	'http://example.com/packaging/55dd787f8dcee5f831625522'
+).toString());
+
+// #2
+trace('#2 ' + test(
+	QueryString.addParameter('http://example.com/packaging/55dd787f8dcee5f831625522', 'quizmonkey', '2'),
+	'http://example.com/packaging/55dd787f8dcee5f831625522?quizmonkey=2'
+).toString());
+
+// #3
+trace('#3 ' + test(
+	QueryString.getParameter('http://example.com/packaging/55dd787f8dcee5f831625522?quizmonkey=2', 'quizmonkey'),
+	'2'
+).toString());
+
+// #4
+trace('#4 ' + test(
+	QueryString.addParameter('http://example.com/packaging/55dd787f8dcee5f831625522?style=listicle&quizmonkey=1&quizmonkey=3&aaa=bbb&quizmonkey=4', 'quizmonkey', '2'),
+	'http://example.com/packaging/55dd787f8dcee5f831625522?style=listicle&quizmonkey=2&quizmonkey=2&aaa=bbb&quizmonkey=2'
+).toString());
+
+// #5
+trace('#5 ' + test(
+	QueryString.removeParameter('http://example.com/quiz.php?id=11&quizmonkey=2&quizmonkey_var%5B%5D=&quizmonkey_var%5B%5D=&quizmonkey_var%5B%5D=', 'quizmonkey_var[]'),
+	'http://example.com/quiz.php?id=11&quizmonkey=2'
+).toString());
+
+// #6
+trace('#6 ' + test(
+	QueryString.getParameter('quizmonkey.dev.daum.net/quiz.php?id=11&quizmonkey=1&quizmonkey_var[]=1&quizmonkey_var[]=2&quizmonkey_var[]=3', 'quizmonkey_var[]').toString(),
+	['1', '2', '3'].toString()
+).toString());
+
+// #7
+trace('#7 ' + test(
+	QueryString.removeParameter('http://example.com/quiz.php?id=11&quizmonkey_var[]=1&quizmonkey_var[]=2&quizmonkey_var[]=3&quizmonkey=0&quizmonkey_var[]=&quizmonkey_var[]=&quizmonkey_var[]=', 'quizmonkey_var[]'),
+	'http://example.com/quiz.php?id=11&quizmonkey=0'
+).toString());
+
+// #8
+trace('#8 ' + test(
+	QueryString.addQueryString('http://example.com/quiz.php?id=10', ''),
+	'http://example.com/quiz.php?id=10'
+).toString());
+
+// #9
+trace('#9 ' + test(
+	QueryString.removeParameter('https://samanco.daumkakao.io/editor.html?quizmonkey=2#/docs/55dd787f8dcee5f831625522', 'quizmonkey'),
+	'https://samanco.daumkakao.io/editor.html#/docs/55dd787f8dcee5f831625522'
+).toString());
+
+</script>
+
+</body>
+</html>
