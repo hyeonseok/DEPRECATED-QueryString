@@ -60,7 +60,7 @@ trace('#5 ' + test(
 
 // #6
 trace('#6 ' + test(
-	QueryString.getParameter('quizmonkey.dev.daum.net/quiz.php?id=11&quizmonkey=1&quizmonkey_var[]=1&quizmonkey_var[]=2&quizmonkey_var[]=3', 'quizmonkey_var[]').toString(),
+	QueryString.getParameter('http://example.com/quiz.php?id=11&quizmonkey=1&quizmonkey_var[]=1&quizmonkey_var[]=2&quizmonkey_var[]=3', 'quizmonkey_var[]').toString(),
 	['1', '2', '3'].toString()
 ).toString());
 
@@ -78,8 +78,8 @@ trace('#8 ' + test(
 
 // #9
 trace('#9 ' + test(
-	QueryString.removeParameter('https://samanco.daumkakao.io/editor.html?quizmonkey=2#/docs/55dd787f8dcee5f831625522', 'quizmonkey'),
-	'https://samanco.daumkakao.io/editor.html#/docs/55dd787f8dcee5f831625522'
+	QueryString.removeParameter('http://example.com/editor.html?quizmonkey=2#/docs/55dd787f8dcee5f831625522', 'quizmonkey'),
+	'http://example.com/editor.html#/docs/55dd787f8dcee5f831625522'
 ).toString());
 
 </script>
