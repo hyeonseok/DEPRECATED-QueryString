@@ -1,3 +1,7 @@
+/**
+ * Add, remove, modify field in URL query string.
+ * https://github.com/hyeonseok/QueryString
+ */
 var QueryString = {
 	parseUrl: function (href) {
 		return {
