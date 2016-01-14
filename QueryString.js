@@ -27,7 +27,7 @@ var QueryString = {
 			}
 		}
 
-		return value.length === 0 ? false : (value.length === 1 ? value[0] : value);
+		return value.length === 0 ? undefined : (value.length === 1 ? value[0] : value);
 	},
 
 	addParameter: function (href, parameter, value) {

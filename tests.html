@@ -82,6 +82,12 @@ trace('#9 ' + test(
 	'http://example.com/editor.html#/docs/55dd787f8dcee5f831625522'
 ).toString());
 
+// #10
+trace('#10 ' + test(
+	QueryString.getParameter('http://example.com/editor.html', 'whatever'),
+	undefined
+).toString());
+
 </script>
 
 </body>
