@@ -37,18 +37,14 @@ var QueryString = {
 
 		if (parsed.query.indexOf(parameter + '=') > -1) {
 			for (i = 0, splited = parsed.query.split('&'); i < splited.length; i++) {
-				if (splited[i].indexOf(parameter + '=') > -1 || splited[i].indexOf(encodeURIComponent(parameter) + '=') > -1) {
-					query.push(parameter + '=' + value);
-				} else {
+				if (splited[i].indexOf(parameter + '=') === -1 && splited[i].indexOf(encodeURIComponent(parameter) + '=') === -1) {
 					query.push(splited[i]);
 				}
 			}
-		} else {
-			if (parsed.query.length > 0) {
-				query.push(parsed.query);
-			}
-			query.push(parameter + '=' + value);
+		} else if (parsed.query.length > 0) {
+			query.push(parsed.query);
 		}
+		query.push(parameter + '=' + value);
 
 		parsed.query = query.join('&');
 
