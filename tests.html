@@ -88,6 +88,12 @@ trace('#10 ' + test(
 	undefined
 ).toString());
 
+// #11
+trace('#11 ' + test(
+	QueryString.getParameter('http://example.com/path?quizmonkey=4&quizmonkey=2', 'quizmonkey'),
+	'2'
+).toString());
+
 </script>
 
 </body>
